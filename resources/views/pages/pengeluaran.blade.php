@@ -105,17 +105,17 @@
                     <div class="row d-flex">
                         <div class="col-md-6"></div>
                         <div class="col-md-2"></div>
-                        <div class="col-md-2">
+                        {{-- <div class="col-md-2">
                             <div class="row">
                                 <div class="col-md-6"></div>
                                 <div class="col-md-6 text-end">
                                     <label for="exampleInputEmail1" class="form-label py-2">Search :</label>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-md-2">
+                        </div> --}}
+                        {{-- <div class="col-md-2">
                             <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Search Nomor Pendaftaran...">
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
                 <table class="table table-striped table-hover">
