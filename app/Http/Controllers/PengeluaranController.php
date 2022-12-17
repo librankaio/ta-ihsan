@@ -29,11 +29,11 @@ class PengeluaranController extends Controller
         ]);
 
         Pengeluaran::create([
-            'notrans' => InputDataController::md5Encrypt($request->notrans),
+            'notrans' => MdEncryptController::md5Encrypt($request->notrans),
             'nama_brg' => $request->nama_brg,
             'jenis_brg' => $request->jenis_brg,
             'jml_brg' => $request->jml_barang,
-            'customer' => InputDataController::md5Encrypt($request->customer),
+            'customer' => MdEncryptController::md5Encrypt($request->customer),
             'harga_brg' => $request->hrg_barang,
             'stats' => $request->stats,
         ]);
@@ -45,7 +45,7 @@ class PengeluaranController extends Controller
         $end = microtime(true);
         // echo round($end-$start,5)." MiliSeconds";
         $waktu =  round($end-$start,5)." MiliSeconds";
-        return redirect('pemasukan')->with('success','Data Berhasil Di Inputkan selama',$waktu);
+        return redirect('pengeluaran')->with('success','Data Berhasil Di Inputkan selama',$waktu);
     }
 
     public static function md5Encrypt($str){
@@ -75,11 +75,11 @@ class PengeluaranController extends Controller
         $customer = request('customer');
 
         $pengeluaran->update([
-            'notrans' => InputDataController::md5Encrypt($notrans),
+            'notrans' => MdEncryptController::md5Encrypt($notrans),
             'nama_brg' => request('nama_brg'),
             'jenis_brg' => request('jenis_brg'),
             'jml_brg' => request('jml_barang'),
-            'customer' => InputDataController::md5Encrypt($customer),
+            'customer' => MdEncryptController::md5Encrypt($customer),
             'harga_brg' => request('hrg_barang'),
             'stats' => request('stats'),
         ]);

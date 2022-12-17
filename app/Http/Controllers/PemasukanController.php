@@ -29,11 +29,11 @@ class PemasukanController extends Controller
         ]);
 
         Pemasukan::create([
-            'notrans' => InputDataController::md5Encrypt($request->notrans),
+            'notrans' => MdEncryptController::md5Encrypt($request->notrans),
             'nama_brg' => $request->nama_brg,
             'jenis_brg' => $request->jenis_brg,
             'jml_brg' => $request->jml_barang,
-            'supplier' => InputDataController::md5Encrypt($request->supplier),
+            'supplier' => MdEncryptController::md5Encrypt($request->supplier),
             'harga_brg' => $request->hrg_barang,
             'stats' => $request->stats,
         ]);
@@ -75,11 +75,11 @@ class PemasukanController extends Controller
         $supplier = request('supplier');
 
         $pemasukan->update([
-            'notrans' => InputDataController::md5Encrypt($notrans),
+            'notrans' => MdEncryptController::md5Encrypt($notrans),
             'nama_brg' => request('nama_brg'),
             'jenis_brg' => request('jenis_brg'),
             'jml_brg' => request('jml_barang'),
-            'supplier' => InputDataController::md5Encrypt($supplier),
+            'supplier' => MdEncryptController::md5Encrypt($supplier),
             'harga_brg' => request('hrg_barang'),
             'stats' => request('stats'),
         ]);

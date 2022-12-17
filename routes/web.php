@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PemasukanController;
 use App\Http\Controllers\PengeluaranController;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\StockOpnameController;
 use App\Http\Controllers\TrdrbwController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
@@ -46,6 +47,9 @@ Route::group(['middleware' => ['auth']], function(){
     Route::get('/pengeluaran/{pengeluaran}/edit', [PengeluaranController::class, 'edit'])->name('pengeluaranedit');
     Route::put('/pengeluaran/{pengeluaran}', [PengeluaranController::class, 'update'])->name('pengeluaranupdate');
     Route::get('/pengeluaran/{pengeluaran}/delete', [PengeluaranController::class, 'delete'])->name('pengeluarandelete');
+    
+    //STOCK OPNAME
+    Route::get('/stockopname', [StockOpnameController::class, 'index'])->name('stockopname');
 
     //USER
     Route::get('/user', [UserController::class, 'index'])->name('user');

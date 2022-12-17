@@ -18,7 +18,8 @@
       </center>
       <a href="{{ '/pemasukan' }}" class="btn_Nav {{ 'pemasukan' == request()->path() ? 'btn_NavActive' : '' }}"><i class="fas fa-edit"></i><span>Pemasukan</span></a>
       <a href="{{ '/pengeluaran' }}" class="btn_Nav {{ 'pengeluaran' == request()->path() ? 'btn_NavActive' : '' }}"><i class="fas fa-edit"></i><span>Pengeluaran</span></a>
-      <a href="{{ '/user' }}" class="btn_Nav {{ 'user' == request()->path() ? 'btn_NavActive' : '' }}"><i class="fas fa-edit"></i><span>Users</span></a>
+      <a href="{{ '/stockopname' }}" class="btn_Nav {{ 'stockopname' == request()->path() ? 'btn_NavActive' : '' }}"><i class="fas fa-edit"></i><span>Stock Opname</span></a>
+      <a href="{{ '/stockopname' }}" class="btn_Nav {{ 'user' == request()->path() ? 'btn_NavActive' : '' }}"><i class="fas fa-edit"></i><span>Users</span></a>
       {{-- <a href="{{ 'home' }}" class="btn_Nav {{ 'home' == request()->path() ? 'btn_NavActive' : '' }}"><i class="fas fa-home"></i><span>Home</span></a> --}}
       {{-- <a href="{{ '/inputdata' }}" class="btn_Nav {{ 'inputdata' == request()->path() ? 'btn_NavActive' : '' }}"><i class="fas fa-edit"></i><span>Input Data (MD5)</span></a>
       <a href="{{ '/datamd5' }}" class="btn_Nav {{ 'datamd5' == request()->path() ? 'btn_NavActive' : '' }}"><i class="fas fa-file-alt"></i><span>Data Karyawan (MD5)</span></a>
