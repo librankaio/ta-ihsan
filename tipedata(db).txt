@@ -1,0 +1,11 @@
+nama(varchar), nik(int), npwp(int), Jabatan(varchar), Alamat(varchar), tanggungan(int), penghasilan(decimal),pajakhasil(decimal)
+
+$table->string('nama'),
+$table->integer('nik'),
+$table-integer('npwp'),
+$table->string('jbtn'),
+$table->text('alamat'),
+$table->integer('tgngn'),
+$table->decimal('penghasilan'),
+$table->decimal('pajakhasil),
+$table->tinyint('stats'),
