@@ -30,7 +30,7 @@ Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
 
 Route::group(['middleware' => ['auth']], function(){
-    Route::get('home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [PemasukanController::class, 'index'])->name('home');
     
     //PEMASUKAN
     Route::get('/pemasukan', [PemasukanController::class, 'index'])->name('pemasukan');
