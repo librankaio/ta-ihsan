@@ -37,12 +37,9 @@
                     <thead>
                         <tr align="center" class="" style="font-weight: bold;">
                             <th scope="col" class="border-bottom-0 border-2">No</th>
-                            <th scope="col" class="border-bottom-0 border-2">No Transaksis</th>
                             <th scope="col" class="border-bottom-0 border-2">Nama Barang</th>
                             <th scope="col" class="border-bottom-0 border-2">Jenis Barang</th>
                             <th scope="col" class="border-bottom-0 border-2">Nama Supplier</th>
-                            <th scope="col" class="border-bottom-0 border-2">Jumlah Barang Masuk</th>
-                            <th scope="col" class="border-bottom-0 border-2">Jumlah Barang Keluar</th>
                             <th scope="col" class="border-bottom-0 border-2">Jumlah Stock Barang</th>
                             <th scope="col" class="border-bottom-0 border-2">Harga Barang</th>
                             <th align="center" colspan="2" class="border-bottom-0 border-2">Aksi</th>
@@ -51,25 +48,20 @@
                     <tbody>
                         @php $start = microtime(true); @endphp
                         @php $no=0; @endphp
-                        @foreach ($pemasukans as $pemasukan)
-                        @foreach ($pengeluarans as $pengeluaran)
+                        @foreach ($stockopnames as $stockopname)
                         @php $no++ @endphp
                         <tr>
                             test
                             <th scope="row" class="border-2">{{ $no }}</th>
-                            <td class="border-2">{{ App\Http\Controllers\PemasukanController::md5Decrypt('notrans',$pemasukan['notrans']) }}</td>
-                            <td class="border-2">{{ $pemasukan->nama_brg }}</td>
-                            <td class="border-2">{{ $pemasukan->jenis_brg }}</td>
-                            <td class="border-2">{{ App\Http\Controllers\PemasukanController::md5Decrypt('supplier',$pemasukan['supplier']) }}</td>
-                            <td class="border-2">{{ $pemasukan->jml_brg }}</td>
-                            <td class="border-2">{{ $pengeluaran->jml_brg }}</td>
-                            <td class="border-2">{{ $pemasukan->jml_brg - $pengeluaran->jml_brg}}</td>
-                            <td class="border-2">{{ $pemasukan->harga_brg}}</td>
-                            <td class="border-2"><a href="/pemasukan/{{ $pemasukan->id }}/edit"><i class="far fa-edit"></i></a></td>
-                            <td class="border-2"><a href="/pemasukan/{{ $pemasukan->id }}/delete"><i class="fas fa-trash-alt"></i></a></td>
+                            <td class="border-2">{{ $stockopname->nama_brg }}</td>
+                            <td class="border-2">{{ $stockopname->jenis_brg }}</td>
+                            <td class="border-2">{{ $stockopname->supplier }}</td>
+                            <td class="border-2">{{ $stockopname->jml_brg }}</td>
+                            <td class="border-2">{{ $stockopname->harga_brg}}</td>
+                            <td class="border-2"><a href="/pemasukan/{{ $stockopname->id }}/edit"><i class="far fa-edit"></i></a></td>
+                            <td class="border-2"><a href="/pemasukan/{{ $stockopname->id }}/delete"><i class="fas fa-trash-alt"></i></a></td>
 
                         </tr>
-                        @endforeach
                         @endforeach
                         @php $end = microtime(true);
                         echo round($end-$start,5)."MiliSeconds";
@@ -80,17 +72,17 @@
                     <div class="col-md-6 py-3">
                         <div class="d-flex justify-content-start">
                             Showing
-                            {{ $pemasukans->firstItem() }}
+                            {{ $stockopnames->firstItem() }}
                             to
-                            {{ $pemasukans->lastItem() }}
+                            {{ $stockopnames->lastItem() }}
                             of
-                            {{ $pemasukans->total() }}
+                            {{ $stockopnames->total() }}
                             Entries
                         </div>
                     </div>
                     <div class="col-md-6">
                         <div class="d-flex justify-content-end">
-                            {{ $pemasukans->links() }}
+                            {{ $stockopnames->links() }}
                         </div>
                     </div>
                 </div>

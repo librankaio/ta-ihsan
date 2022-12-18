@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePengeluaransTable extends Migration
+class CreateStockopnamesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreatePengeluaransTable extends Migration
      */
     public function up()
     {
-        Schema::create('pengeluarans', function (Blueprint $table) {
+        Schema::create('stockopnames', function (Blueprint $table) {
             $table->id();
-            $table->string('notrans');
             $table->string('nama_brg');
             $table->string('jenis_brg');
             $table->integer('jml_brg');
-            $table->string('customer');
+            $table->string('supplier');
             $table->decimal('harga_brg',50)->default(0);
             $table->boolean('stats');
             $table->timestamps();
@@ -33,6 +32,6 @@ class CreatePengeluaransTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('pengeluarans');
+        Schema::dropIfExists('stockopnames');
     }
 }

@@ -32,7 +32,13 @@
                     <div class="col-md-12 bg-white">
                         <div class="">
                             <label for="nama_brg" class="form-label">Nama Barang</label>
-                            <input type="text" class="form-control" id="nama_brg" name="nama_brg" value="{{ old('nama_brg') }}">
+                            {{-- <input type="text" class="form-control" id="nama_brg" name="nama_brg" value="{{ old('nama_brg') }}"> --}}
+                            <select class="form-select" aria-label="Default select example" name="nama_brg" value="{{ old('nama_brg') }}">
+                                <option selected>--PILIH DATA--</option>
+                                @foreach($pemasukans as $key => $pemasukan)
+                                <option>{{ $pemasukan->nama_brg }}</option>                           
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                 </div>

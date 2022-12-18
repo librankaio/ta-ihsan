@@ -2,16 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Pemasukan;
 use App\Models\Pengeluaran;
 use App\Models\Pengeluaranmd;
+use App\Models\Stockopname;
 use Illuminate\Http\Request;
 
 class PengeluaranController extends Controller
 {
     public function index(){
         $pengeluarans = Pengeluaran::where('stats','=',1)->paginate(10);
+        $pemasukans = Pemasukan::where('stats','=',1)->get();
         return view('pages.pengeluaran',[
-            'pengeluarans' => $pengeluarans
+            'pengeluarans' => $pengeluarans,
+            'pemasukans' => $pemasukans,
         ]);
     }
 
@@ -26,7 +30,7 @@ class PengeluaranController extends Controller
             'customer' => ['required', 'string'],
             'hrg_barang' => ['required', 'integer'],
             'stats' => ['required', 'boolean']
-        ]);
+        ]);        
 
         Pengeluaran::create([
             'notrans' => MdEncryptController::md5Encrypt($request->notrans),
@@ -42,6 +46,29 @@ class PengeluaranController extends Controller
             'customer' => $request->customer,
             'stats' => $request->stats
         ]);
+        //Update Pemasukan
+        $pemasukan = Pemasukan::select('jml_brg','supplier')->where('stats','=',1)->where('nama_brg','=',$request->nama_brg)->first();
+        $stock = $pemasukan->jml_brg - $request->jml_barang;
+        Pemasukan::where('stats','=',1)->where('nama_brg','=',$request->nama_brg)->update(['jml_brg' => $stock]);
+        
+        //FIND SUPPLIER
+        $supplier = PemasukanController::md5Decrypt('supplier',$pemasukan->supplier);
+        
+        $validateitem = Stockopname::where('stats','=',1)->where('nama_brg','=',$request->nama_brg)->first();
+        if($validateitem == null){
+            Stockopname::create([
+                'nama_brg' => $request->nama_brg,
+                'jenis_brg' => $request->jenis_brg,
+                'jml_brg' => $stock,
+                'supplier' => $supplier,
+                'harga_brg' => $request->hrg_barang,
+                'stats' => $request->stats,
+            ]);
+        }else{
+            $stockopname = Stockopname::select('jml_brg')->where('stats','=',1)->where('nama_brg','=',$request->nama_brg)->first();
+            $jmlbrg = $stockopname->jml_brg - $request->jml_barang;
+            Stockopname::where('stats','=',1)->where('nama_brg','=',$request->nama_brg)->update(['jml_brg' => $jmlbrg]);
+        }
         $end = microtime(true);
         // echo round($end-$start,5)." MiliSeconds";
         $waktu =  round($end-$start,5)." MiliSeconds";

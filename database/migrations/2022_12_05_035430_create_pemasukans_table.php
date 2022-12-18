@@ -20,7 +20,7 @@ class CreatePemasukansTable extends Migration
             $table->string('jenis_brg');
             $table->integer('jml_brg');
             $table->string('supplier');
-            $table->decimal('harga_brg')->default(0);
+            $table->decimal('harga_brg',50)->default(0);
             $table->boolean('stats');
             $table->timestamps();
         });
