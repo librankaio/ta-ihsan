@@ -45,13 +45,13 @@
                             <th align="center" colspan="2" class="border-bottom-0 border-2">Aksi</th>
                         </tr>
                     </thead>
-                    <tbody>
+                    <tbody>                        
                         @php $start = microtime(true); @endphp
                         @php $no=0; @endphp
+                        @php $earlycount = 0; @endphp
                         @foreach ($stockopnames as $stockopname)
                         @php $no++ @endphp
                         <tr>
-                            test
                             <th scope="row" class="border-2">{{ $no }}</th>
                             <td class="border-2">{{ $stockopname->nama_brg }}</td>
                             <td class="border-2">{{ $stockopname->jenis_brg }}</td>
@@ -62,6 +62,9 @@
                             <td class="border-2"><a href="/pemasukan/{{ $stockopname->id }}/delete"><i class="fas fa-trash-alt"></i></a></td>
 
                         </tr>
+                        @if( $stockopname->jml_brg < 5)
+                            @php $earlycount++ @endphp
+                        @endif
                         @endforeach
                         @php $end = microtime(true);
                         echo round($end-$start,5)."MiliSeconds";
@@ -88,6 +91,15 @@
                 </div>
             </div>
         </div>
+        {{-- EARLY WARNING --}}
+        @if($earlycount > 0)
+        <div class="container-fluid px-4 py-2">
+            <div class="alert alert-warning alert-block">
+                <button type="button" class="close" data-dismiss="alert">×</button>    
+                <strong>Warning!! ada ({{ $earlycount }}) data barang yang kurang dari 5</strong>
+            </div>
+        </div>
+        @endif
 </form>
 {{-- END Form --}}
 @endsection
