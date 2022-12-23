@@ -45,7 +45,7 @@ class PemasukanController extends Controller
         $end = microtime(true);
         // echo round($end-$start,5)." MiliSeconds";
         $waktu =  round($end-$start,5)." MiliSeconds";
-        return redirect('pemasukan')->with('success','Data Berhasil Di Inputkan selama',$waktu);
+        return redirect('pemasukan')->with('success','Data Berhasil Di Inputkan selama '.$waktu);
     }
 
     public static function md5Encrypt($str){

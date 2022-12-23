@@ -72,7 +72,7 @@ class PengeluaranController extends Controller
         $end = microtime(true);
         // echo round($end-$start,5)." MiliSeconds";
         $waktu =  round($end-$start,5)." MiliSeconds";
-        return redirect('pengeluaran')->with('success','Data Berhasil Di Inputkan selama',$waktu);
+        return redirect('pengeluaran')->with('success','Data Berhasil Di Inputkan selama '.$waktu);
     }
 
     public static function md5Encrypt($str){
